@@ -21,5 +21,3 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = ['name', 'overview']
     exclude = ['created', 'updated']
     inlines = [ModuleInline]
-
-

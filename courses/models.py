@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 from eLearning import settings
@@ -45,3 +47,45 @@ class Module(models.Model):
     class Meta:
         verbose_name = 'moduł'
         verbose_name_plural = 'Moduły'
+
+
+class Content(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name="contents")
+    content_type = models.ForeignKey(ContentType,
+                                     limit_choices_to={'model__in': ('text',
+                                                                     'file',
+                                                                     'image',
+                                                                     'video')},
+                                     on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    item = GenericForeignKey('content_type', 'object_id')
+
+
+class ItemBase(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='%(class)s_related',
+                              verbose_name='Użytkownik')
+    title = models.CharField(max_length=255, verbose_name='Tytuł')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.title
+
+
+class Text(ItemBase):
+    content = models.TextField()
+
+
+class File(ItemBase):
+    file = models.FileField(upload_to='files')
+
+
+class Image(ItemBase):
+    image = models.FileField(upload_to='images')
+
+
+class Video(ItemBase):
+    url = models.URLField()

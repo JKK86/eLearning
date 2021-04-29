@@ -1,0 +1,42 @@
+[
+{
+  "model": "courses.subject",
+  "pk": 1,
+  "fields": {
+    "name": "Programowanie",
+    "slug": "programowanie"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 2,
+  "fields": {
+    "name": "Fotografia",
+    "slug": "fotografia"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 3,
+  "fields": {
+    "name": "Grafika",
+    "slug": "grafika"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 4,
+  "fields": {
+    "name": "Systemy operacyjne",
+    "slug": "systemy-operacyjne"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 5,
+  "fields": {
+    "name": "Matematyka",
+    "slug": "matematyka"
+  }
+}
+]
