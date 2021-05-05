@@ -18,7 +18,7 @@ class OrderField(models.PositiveIntegerField):
                     qs = qs.filter(**query)
                     # Pobranie kolejności ostatniego elementu
                 last_item = qs.latest(self.attname)
-                value = last_item.attname + 1
+                value = last_item.order + 1
             except ObjectDoesNotExist:
                 value = 0
             setattr(model_instance, self.attname, value)

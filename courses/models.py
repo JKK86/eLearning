@@ -3,6 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 from eLearning import settings
+from .fields import OrderField
 
 
 class Subject(models.Model):
@@ -40,13 +41,15 @@ class Module(models.Model):
     name = models.CharField(max_length=255, verbose_name='Nazwa modułu')
     description = models.TextField()
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
+    order = OrderField(blank=True, for_fields=['course'])
 
     def __str__(self):
-        return self.name
+        return f'{self.order}. {self.name}'
 
     class Meta:
         verbose_name = 'moduł'
         verbose_name_plural = 'Moduły'
+        ordering = ['order']
 
 
 class Content(models.Model):
@@ -59,6 +62,12 @@ class Content(models.Model):
                                      on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
+    order = OrderField(blank=True, for_fields=['module'])
+
+    class Meta:
+        verbose_name = 'zawartość'
+        verbose_name_plural = 'Zawartość'
+        ordering = ['order']
 
 
 class ItemBase(models.Model):
