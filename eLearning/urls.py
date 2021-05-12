@@ -16,10 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from courses import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+
+    path('course/list/', views.ManageCourseListView.as_view(), name='manage_course_list'),
+    path('course/add/', views.CourseCreateView.as_view(), name='course_create'),
+    path('course/update/<int:pk>', views.CourseUpdateView.as_view(), name='course_update'),
+    path('course/delete/<int:pk>', views.CourseDeleteView.as_view(), name='course_delete'),
+
 ]

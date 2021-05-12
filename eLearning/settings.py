@@ -128,3 +128,7 @@ except ModuleNotFoundError:
     print("Brak konfiguracji bazy danych w pliku local_settings.py!")
     print("Uzupełnij dane i spróbuj ponownie!")
     exit(0)
+
+LOGIN_REDIRECT_URL = 'manage_course_list'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
