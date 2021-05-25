@@ -34,6 +34,7 @@ urlpatterns = [
          name='module_content_create'),
     path('course/module/<int:module_id>/content/<model_name>/<id>/', views.ContentCreateUpdateView.as_view(),
          name='module_content_update')
+    path('course/content/<int:id>/delete/', views.ContentDeleteView.as_view(), 'module_content_delete')
 
 
 ]
