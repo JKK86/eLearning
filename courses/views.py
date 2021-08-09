@@ -5,7 +5,7 @@ from django.db.models import Count
 from django.forms import modelform_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.views.generic.base import TemplateResponseMixin, View
 
 from courses.forms import ModuleFormSet
@@ -160,3 +160,7 @@ class CourseListView(TemplateResponseMixin, View):
             courses = courses.filter(subject=subject)
         return self.render_to_response({"subjects":subjects, "courses":courses, "subject":subject})
 
+
+class CourseDetailView(DetailView):
+    model = Course
+    template_name = 'courses/course/detail.html'
