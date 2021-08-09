@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}
+    {{ object }}
+{% endblock %}
+{% block content %}
+    {% with subject=course.subject %}
+        <h1>{{ object }}</h1>
+        <div class="module">
+            <h2>Ogólny opis kursu</h2>
+            <p>
+                <a href="{% url 'course_list_subject' subject.slug %}">{{ subject }}
+                </a>, {{ course.modules.count }} moduł{{ course.modules.count|pluralize:"y" }},
+                instruktor: {{ course.owner.get_full_name }}
+            </p>
+            {{ course.overview|linebreaks }}
+        </div>
+    {% endwith %}
+{% endblock %}
