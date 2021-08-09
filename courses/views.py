@@ -158,7 +158,7 @@ class CourseListView(TemplateResponseMixin, View):
         if subject:
             subject = get_object_or_404(Subject, slug=subject)
             courses = courses.filter(subject=subject)
-        return self.render_to_response({"subjects":subjects, "courses":courses, "subject":subject})
+        return self.render_to_response({"subjects": subjects, "courses": courses, "subject": subject})
 
 
 class CourseDetailView(DetailView):
