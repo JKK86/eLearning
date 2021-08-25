@@ -23,6 +23,7 @@ urlpatterns = [
 
     path('course/', include('courses.urls')),
     path('account/', include('users.urls')),
+    path('students/', include('students.urls')),
 
-    path('', CourseListView.as_view(), name="course_list")
+    path('', CourseListView.as_view(), name="course_list"),
 ]
