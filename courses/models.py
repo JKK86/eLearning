@@ -27,6 +27,8 @@ class Course(models.Model):
     overview = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    students = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='courses_joined', blank=True,
+                                      verbose_name="Studenci")
 
     def __str__(self):
         return self.name
