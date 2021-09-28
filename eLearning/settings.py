@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'courses',
     'students',
     'embed_video',
+    'memcache_status',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,10 @@ except ModuleNotFoundError:
 LOGIN_REDIRECT_URL = reverse_lazy('student_course_list')
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
