@@ -24,7 +24,7 @@
                     <li>Brak modułów</li>
                 {% endfor %}
             </ul>
-            <p><a href=""{% url 'course_module_update' course.id %}>Edytuj moduły</a></p>
+            <p><a href="{% url 'course_module_update' course.id %}">Edytuj moduły</a></p>
         </div>
         <div class="module">
             <h2>Moduł {{ module.order|add:1 }}: {{ module.name }}</h2>

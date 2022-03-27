@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'courses',
     'students',
+    'chat',
     'embed_video',
     'memcache_status',
     'rest_framework',
