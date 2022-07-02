@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'embed_video',
     'memcache_status',
     'rest_framework',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,7 @@ MIDDLEWARE = [
 # CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
 
 ROOT_URLCONF = 'eLearning.urls'
+ASGI_APPLICATION = 'eLearning.routing.application'
 
 TEMPLATES = [
     {
